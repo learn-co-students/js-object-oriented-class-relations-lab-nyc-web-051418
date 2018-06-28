@@ -14,13 +14,13 @@ class Driver {
     return store.trips.filter(
       function(trip) {
         return trip.driverId === this.id
-      }.bind(this) // using bind
+      }.bind(this) // using function and bind
     )
   }
 
   passengers() {
     return this.trips().map( trip =>
-       {return trip.passenger();}
+        trip.passenger() // no (), FAILS! no ';' to work
       );
   }
 
@@ -35,9 +35,8 @@ class Passenger {
 
   trips() {
     return store.trips.filter(
-      trip => {return trip.passengerId === this.id
-      }
-    )
+      trip => (trip.passengerId === this.id)
+    ) //with ()
   }
 
   drivers() {
